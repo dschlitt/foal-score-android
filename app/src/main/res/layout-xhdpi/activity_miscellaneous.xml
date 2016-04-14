@@ -22,12 +22,12 @@
             android:gravity="center">
 
             <Button
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:text="Export Data"
                 android:padding="20dp"
                 android:layout_margin="20dp"
-                android:textSize="26sp"
+                android:textSize="18sp"
                 android:textColor="@color/white"
                 android:background="@drawable/round_button_purple"
                 android:id="@+id/emailData"/>
@@ -42,23 +42,23 @@
             android:layout_weight="1">
 
             <Button
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:text="Refer\na\nFriend"
                 android:padding="20dp"
                 android:layout_margin="20dp"
-                android:textSize="26sp"
+                android:textSize="18sp"
                 android:textColor="@color/white"
                 android:background="@drawable/round_button_aqua_green"
                 android:id="@+id/refer"/>
 
             <Button
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:text="Give\nFeedback"
                 android:padding="20dp"
                 android:layout_margin="20dp"
-                android:textSize="26sp"
+                android:textSize="18sp"
                 android:textColor="@color/white"
                 android:background="@drawable/round_button_light_red"
                 android:id="@+id/feedback"/>
