@@ -1,0 +1,34 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="edu.ohio_state.org.vetplus.foalscore.ResultsActivity"
+    android:weightSum="1">
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:background="@color/subscore"
+        android:layout_gravity="center"
+        android:id="@+id/result"
+        android:gravity="center" />
+
+        <Button
+            android:id="@+id/saveScore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:textSize="22sp"
+            android:text="Save Result"
+            android:background="@color/white"
+            android:textColor="@color/black">
+            </Button>
+</FrameLayout>
+    </RelativeLayout>

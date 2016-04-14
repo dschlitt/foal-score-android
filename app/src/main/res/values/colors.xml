@@ -1,0 +1,21 @@
+<resources>
+    <color name="black_overlay">#66000000</color>
+    <color name="subscore">#337AB7</color>
+    <color name="aqua_marine">#5bc5a7</color>
+    <color name="blue">#00bfff</color>
+    <color name="white">#fdfeff</color>
+    <color name="green_yellow">#7fff00</color>
+    <color name="yellow">#ffff66</color>
+    <color name="orange">#ffa500</color>
+    <color name="salmon">#ffa07a</color>
+    <color name="pink">#ffb6c1</color>
+    <color name="black">#000000</color>
+    <color name="red">#FE7C7F</color>
+    <color name="green">#029D00</color>
+    <color name="orange_text">#FF9f0A</color>
+    <color name="blue_background">#006594</color>
+    <color name="yellow_text">#F8FF00</color>
+    <color name="list_item_background">#f1f2f2</color>
+    <color name="green_text">#42956A</color>
+    <color name="crimson_red">#962A1E</color>
+</resources>

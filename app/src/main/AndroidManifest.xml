@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="edu.ohio_state.org.vetplus.foalscore" >
+
+    <!-- Internet Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Network State Permissions -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/title_activity_splash_screen"
+        android:theme="@style/Holo" >
+        <activity
+            android:name="edu.ohio_state.org.vetplus.foalscore.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="adjustResize|stateVisible"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+        </activity>
+        <activity
+            android:parentActivityName="edu.ohio_state.org.vetplus.foalscore.LoginActivity"
+            android:name="edu.ohio_state.org.vetplus.foalscore.RegistrationActivity"
+            android:label="@string/title_activity_registration"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.ohio_state.org.vetplus.foalscore.LoginActivity" />
+        </activity>
+        <activity
+            android:parentActivityName="edu.ohio_state.org.vetplus.foalscore.LoginActivity"
+            android:name="edu.ohio_state.org.vetplus.foalscore.ForgotPasswordActivity"
+            android:label="@string/title_activity_forgot_password"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.ohio_state.org.vetplus.foalscore.LoginActivity" />
+        </activity>
+        <activity
+            android:name="edu.ohio_state.org.vetplus.foalscore.HomePageActivity"
+            android:label="@string/title_activity_home_page"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+        </activity>
+        <activity
+            android:parentActivityName="edu.ohio_state.org.vetplus.foalscore.HomePageActivity"
+            android:name="edu.ohio_state.org.vetplus.foalscore.SepsisScoreActivity"
+            android:label="@string/title_activity_sepsis_score"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.ohio_state.org.vetplus.foalscore.HomePageActivity" />
+        </activity>
+        <activity
+            android:parentActivityName="edu.ohio_state.org.vetplus.foalscore.HomePageActivity"
+            android:name="edu.ohio_state.org.vetplus.foalscore.FoalsActivity"
+            android:label="@string/title_activity_foals"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.ohio_state.org.vetplus.foalscore.HomePageActivity" />
+        </activity>
+        <activity
+            android:parentActivityName="edu.ohio_state.org.vetplus.foalscore.HomePageActivity"
+            android:name="edu.ohio_state.org.vetplus.foalscore.FoalScoreActivity"
+            android:label="@string/title_activity_foal_score"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.ohio_state.org.vetplus.foalscore.HomePageActivity" />
+        </activity>
+        <activity
+            android:name="edu.ohio_state.org.vetplus.foalscore.AddFoalActivity"
+            android:label="@string/title_activity_add_foal"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+        </activity>
+        <activity
+            android:parentActivityName="edu.ohio_state.org.vetplus.foalscore.OverviewActivity"
+            android:name="edu.ohio_state.org.vetplus.foalscore.ImportantInformationActivity"
+            android:label="@string/title_activity_important_info"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.ohio_state.org.vetplus.foalscore.OverviewActivity" />
+        </activity>
+        <activity
+            android:parentActivityName="edu.ohio_state.org.vetplus.foalscore.HomePageActivity"
+            android:name="edu.ohio_state.org.vetplus.foalscore.OverviewActivity"
+            android:label="@string/title_activity_overview"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.ohio_state.org.vetplus.foalscore.HomePageActivity" />
+        </activity>
+        <activity
+            android:parentActivityName="edu.ohio_state.org.vetplus.foalscore.OverviewActivity"
+            android:name="edu.ohio_state.org.vetplus.foalscore.SurvivalScoreReferencesActivity"
+            android:label="@string/title_activity_survival_score_reference"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.ohio_state.org.vetplus.foalscore.OverviewActivity" />
+        </activity>
+        <activity
+            android:parentActivityName="edu.ohio_state.org.vetplus.foalscore.OverviewActivity"
+            android:name="edu.ohio_state.org.vetplus.foalscore.SepsisScoreReferenceActivity"
+            android:label="@string/title_activity_sepsis_score_reference"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.ohio_state.org.vetplus.foalscore.OverviewActivity" />
+        </activity>
+        <activity
+            android:parentActivityName="edu.ohio_state.org.vetplus.foalscore.OverviewActivity"
+            android:name="edu.ohio_state.org.vetplus.foalscore.ReferencesActivity"
+            android:label="@string/title_activity_references"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.ohio_state.org.vetplus.foalscore.OverviewActivity" />
+        </activity>
+        <activity
+            android:parentActivityName="edu.ohio_state.org.vetplus.foalscore.OverviewActivity"
+            android:name="edu.ohio_state.org.vetplus.foalscore.TerminologyActivity"
+            android:label="@string/title_activity_terminology"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.ohio_state.org.vetplus.foalscore.OverviewActivity" />
+        </activity>
+        <activity
+            android:parentActivityName="edu.ohio_state.org.vetplus.foalscore.HomePageActivity"
+            android:name="edu.ohio_state.org.vetplus.foalscore.UserProfileActivity"
+            android:label="@string/title_activity_user_profile"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.ohio_state.org.vetplus.foalscore.HomePageActivity" />
+        </activity>
+        <activity
+            android:parentActivityName="edu.ohio_state.org.vetplus.foalscore.HomePageActivity"
+            android:name="edu.ohio_state.org.vetplus.foalscore.MiscellaneousActivity"
+            android:label="@string/title_activity_miscellaneous"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.ohio_state.org.vetplus.foalscore.HomePageActivity" />
+        </activity>
+        <activity
+            android:parentActivityName="edu.ohio_state.org.vetplus.foalscore.MiscellaneousActivity"
+            android:name="edu.ohio_state.org.vetplus.foalscore.ReferAFriendActivity"
+            android:label="@string/title_activity_refer_friend"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.ohio_state.org.vetplus.foalscore.MiscellaneousActivity" />
+        </activity>
+        <activity
+            android:parentActivityName="edu.ohio_state.org.vetplus.foalscore.MiscellaneousActivity"
+            android:name="edu.ohio_state.org.vetplus.foalscore.FeedbackActivity"
+            android:label="@string/title_activity_feedback"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.ohio_state.org.vetplus.foalscore.MiscellaneousActivity" />
+        </activity>
+        <activity
+            android:parentActivityName="edu.ohio_state.org.vetplus.foalscore.MiscellaneousActivity"
+            android:name="edu.ohio_state.org.vetplus.foalscore.EMailActivity"
+            android:label="@string/title_activity_email"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.ohio_state.org.vetplus.foalscore.MiscellaneousActivity" />
+        </activity>
+        <activity
+            android:parentActivityName="edu.ohio_state.org.vetplus.foalscore.UserProfileActivity"
+            android:name="edu.ohio_state.org.vetplus.foalscore.ChangePasswordActivity"
+            android:label="@string/title_activity_change_password"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.ohio_state.org.vetplus.foalscore.UserProfileActivity" />
+        </activity>
+        <activity
+            android:name="edu.ohio_state.org.vetplus.foalscore.ResultsActivity"
+            android:label="@string/title_activity_results"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+        </activity>
+        <activity
+            android:name="edu.ohio_state.org.vetplus.foalscore.SplashScreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_splash_screen"
+            android:theme="@style/FullscreenTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:parentActivityName="edu.ohio_state.org.vetplus.foalscore.FoalsActivity"
+            android:name="edu.ohio_state.org.vetplus.foalscore.FoalDetailsActivity"
+            android:label="@string/title_activity_foal_details"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.ohio_state.org.vetplus.foalscore.FoalsActivity" />
+        </activity>
+    </application>
+
+</manifest>

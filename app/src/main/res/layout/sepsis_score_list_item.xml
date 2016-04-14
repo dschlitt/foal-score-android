@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:ellipsize="marquee"
+            android:layout_weight="7"
+            android:textSize="14sp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:id="@+id/field_title" />
+
+        <TextView
+            android:id="@+id/subscore_title"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="2dp"
+            android:layout_height="wrap_content"
+            android:text="Subscore"
+            android:gravity="right"
+            android:layout_marginRight="16dp"
+            android:textSize="12sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <customviews.NoDefaultSpinner
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner"
+            android:layout_weight="7"
+            android:layout_marginBottom="8dp"
+            android:prompt="@string/spinner_default_option"
+            android:layout_marginRight="6dp"
+            android:spinnerMode="dropdown"/>
+
+        <TextView
+            android:id="@+id/subscore"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="right"
+            android:layout_marginRight="16dp"
+            android:text="0"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/subscore"
+            android:textSize="22sp" />
+    </LinearLayout>
+</LinearLayout>

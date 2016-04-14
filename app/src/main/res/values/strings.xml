@@ -1,0 +1,290 @@
+<resources>
+    <string name="app_name">VetPlus</string>
+    <string name="title_activity_registration">User Registration</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_forgot_password">Forgot Password?</string>
+    <string name="title_activity_login">"Login"</string>
+    <string name="title_activity_home_page">"FoalScore Home"</string>
+    <string name="title_activity_sepsis_score">"Sepsis Score Calculation"</string>
+    <string name="title_activity_foal_score">"Foal Survival Score Calculation"</string>
+    <string name="title_activity_foals">"Foals"</string>
+    <string name="title_activity_add_foal">"Foal Information"</string>
+    <string name="title_activity_overview">"Overview"</string>
+    <string name="title_activity_references">"References"</string>
+    <string name="title_activity_survival_score_reference">"Foal Survival Score Overview"</string>
+    <string name="title_activity_sepsis_score_reference">"Sepsis Score Overview"</string>
+    <string name="title_activity_terminology">"Terminology"</string>
+    <string name="title_activity_user_profile">"User Profile"</string>
+    <string name="title_activity_miscellaneous">"Miscellaneous"</string>
+    <string name="title_activity_refer_friend">"Refer A Friend"</string>
+    <string name="title_activity_feedback">"Feedback"</string>
+    <string name="title_activity_email">"Export Data"</string>
+    <string name="title_activity_change_password">"Change/Reset Password"</string>
+    <string name="title_activity_results">"Result"</string>
+    <string name="title_activity_important_info">"Important Information"</string>
+
+    <string name="Age_Prompt">Age of the foal</string>
+    <string-array name="Age">
+        <item>&lt; 12 hours</item>
+        <item>&gt; 12 hours</item>
+    </string-array>
+
+    <integer-array name="age">
+        <item>1</item>
+        <item>0</item>
+    </integer-array>
+    <string name="Neutrophil_Count_Prompt">Neutrophil Count</string>
+    <string-array name="Neutrophil_Count">
+    <item>&lt; 2.0 x 10 <sup><small>9</small></sup>/l</item>
+    <item>2.0 - 4.0 x 10 <sup><small>9</small></sup>/l</item>
+    <item>8.0 - 12.0 x 10 <sup><small>9</small></sup>/l</item>
+    <item>Normal</item>
+    </string-array>
+    <integer-array name="neutrophil">
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+        <item>0</item>
+    </integer-array>
+    <string name="Band_Neutrophil_Count_Prompt">Band Neutrophil Count</string>
+    <string-array name="Band_Neutrophil_Count">
+        <item>&gt; 0.2 x 10 <sup><small>9</small></sup>/l</item>
+        <item>0.05 - 0.20 x 10 <sup><small>9</small></sup>/l</item>
+        <item>&lt; 0.05 x 10 <sup><small>9</small></sup>/l</item>
+    </string-array>
+    <integer-array name="bandNeutrophil">
+        <item>3</item>
+        <item>2</item>
+        <item>0</item>
+    </integer-array>
+    <string name="Granulation_Prompt">Vacuolization in Neutrophillis</string>
+    <string-array name="Granulation">
+        <item>Marked</item>
+        <item>Moderate</item>
+        <item>Slight</item>
+        <item>None</item>
+    </string-array>
+    <integer-array name="granulation">
+        <item>4</item>
+        <item>3</item>
+        <item>2</item>
+        <item>0</item>
+    </integer-array>
+    <string name="Fibrinogen_Prompt">Fibrinogen (mg/dL)</string>
+    <string-array name="Fibrinogen">
+        <item>&gt; 600</item>
+        <item>410 - 600</item>
+        <item>&lt; 400</item>
+    </string-array>
+    <integer-array name="fibrinogen">
+        <item>2</item>
+        <item>1</item>
+        <item>0</item>
+    </integer-array>
+    <string name="Hypoglycemia_Prompt">Hypoglycemia (mg/dL)</string>
+    <string-array name="Hypoglycemia">
+        <item>&lt; 49</item>
+        <item>49 - 79</item>
+        <item>&gt; 79</item>
+    </string-array>
+    <integer-array name="hypoglycemia">
+        <item>2</item>
+        <item>1</item>
+        <item>0</item>
+    </integer-array>
+    <string name="lgG_Prompt">lgG (mg/dL)</string>
+    <string-array name="lgG1">
+        <item>&lt; 200</item>
+        <item>200 - 400</item>
+        <item>400 - 800 </item>
+        <item>&gt; 800</item>
+    </string-array>
+    <integer-array name="lgG">
+        <item>4</item>
+        <item>3</item>
+        <item>2</item>
+        <item>0</item>
+    </integer-array>
+    <string name="Aterial_Oxygen_Prompt">Aterial Oxygen</string>
+    <string-array name="Aterial_Oxygen">
+        <item>&lt; 40 Torr</item>
+        <item>40 - 50 Torr</item>
+        <item>51 - 70 Torr</item>
+        <item>&gt; 70 Torr</item>
+    </string-array>
+    <integer-array name="aterialOxygen">
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+        <item>0</item>
+    </integer-array>
+    <string name="Metabolic_Acidosis_Prompt">Metabolic Acidosis</string>
+    <string-array name="Metabolic_Acidosis">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <integer-array name="metabolicAcidosis">
+        <item>1</item>
+        <item>0</item>
+    </integer-array>
+    <string name="Sceleral_Prompt">Sceleral Injection</string>
+    <string-array name="Sceleral">
+        <item>Marked</item>
+        <item>Moderate</item>
+        <item>Mild </item>
+        <item>None</item>
+    </string-array>
+    <integer-array name="sceleral">
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+        <item>0</item>
+    </integer-array>
+    <string name="Fever_Prompt">Fever (Farenheit)</string>
+    <string-array name="Fever">
+        <item>&gt; 102&#176; F</item>
+        <item>&lt; 100&#176; F</item>
+        <item>Normal</item>
+    </string-array>
+    <integer-array name="fever">
+        <item>2</item>
+        <item>1</item>
+        <item>0</item>
+    </integer-array>
+    <string name="Prematurity_Prompt">Prematurity</string>
+    <string-array name="Prematurity">
+        <item>&lt; 300 days</item>
+        <item>300 - 310 days</item>
+        <item>311 - 330 days</item>
+        <item>&gt; 330 days</item>
+    </string-array>
+    <integer-array name="prematurity">
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+        <item>0</item>
+    </integer-array>
+    <integer-array name="hypotonia">
+        <item>2</item>
+        <item>1</item>
+        <item>0</item>
+    </integer-array>
+    <string name="Hypotonia_Prompt">Hypotonia, coma depression, convulsions</string>
+    <string-array name="Hypotonia">
+        <item>Marked</item>
+        <item>Mild</item>
+        <item>Normal</item>
+    </string-array>
+    <string name="Diarrhea_Prompt">Diarrhea, Respiratory Diseases,Swollen Joints, Wounds</string>
+    <string-array name="Diarrhea">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <integer-array name="diarrhea">
+        <item>3</item>
+        <item>0</item>
+    </integer-array>
+    <string name="Distocia_Prompt">Placentitis, Discharge prior to delivery, Dystocia</string>
+    <string-array name="Distocia">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <integer-array name="dystocia">
+        <item>3</item>
+        <item>0</item>
+    </integer-array>
+    <string name="Cold_Prompt">Cold Extremeties</string>
+    <string-array name="Cold">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <integer-array name="coldExtremities">
+        <item>0</item>
+        <item>2</item>
+    </integer-array>
+    <string name="Prematurity_days_Prompt">Prematurity (&lt; 320 days)</string>
+    <string-array name="Prematurity_days">
+    <item>Yes</item>
+    <item>No</item>
+    </string-array>
+    <integer-array name="prematurityDays">
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
+    <string name="Infection_Prompt">&gt;= 2 infection/inflammation sites</string>
+    <string-array name="Infection">
+    <item>Yes</item>
+    <item>No</item>
+    </string-array>
+    <integer-array name="infection">
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
+    <string name="lgG2_Prompt">lgG (mg/dL)</string>
+    <string-array name="lgG2">
+    <item>&lt; 400</item>
+    <item>&gt;= 400</item>
+    </string-array>
+    <integer-array name="lgG21">
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
+    <string name="Glucose_Prompt">Glucose (mg/dL)</string>
+    <string-array name="Glucose">
+    <item>&lt; 80</item>
+    <item>&gt;= 80</item>
+    </string-array>
+    <integer-array name="glucose">
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
+    <string name="Sex_Prompt">Sex</string>
+    <string-array name="Sex">
+        <item>Colt</item>
+        <item>Filly</item>
+    </string-array>
+    <string name="WBC_Prompt">WBC x 10 <sup><small>3</small></sup>/microliter</string>
+    <string-array name="WBC">
+        <item>&lt;= 4 x 10 <sup><small>3</small></sup>/microliter</item>
+        <item>&gt; 4 x 10 <sup><small>3</small></sup>/microliter</item>
+    </string-array>
+    <integer-array name="wbc">
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
+    <string name="Dystocia_Prompt">Dystocia</string>
+    <string-array name="Dystocia">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="Survived_Prompt">Survived Until Hospital Discharge</string>
+    <string-array name="Survived">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string name="error_name_required">Name is required</string>
+    <string-array name="Timeline">
+        <item>Today</item>
+        <item>Last 1 week</item>
+        <item>Last 15 days</item>
+        <item>Last 1 month</item>
+        <item>Last 3 months</item>
+        <item>Entire History</item>
+    </string-array>
+    <integer-array name="timeline">
+        <item>1</item>
+        <item>7</item>
+        <item>15</item>
+        <item>30</item>
+        <item>90</item>
+        <item>-1</item>
+    </integer-array>
+
+    <string name="spinner_default_option">Choose an option</string>
+    <string name="title_activity_splash_screen">FoalScore</string>
+    <string name="important_information">This application is intended to be used by veterinary professionals as a supplementary tool to determine likelihood of Sepsis and Survival in neonatal foals. \n \nThe purpose of this application is not to replace veterinary clinical judgment and expertise, nor the consultation of authoritative sources like veterinary textbooks, and professional or institutional guidelines. \n \nBy clicking the OK button, you certify that you have read and understood this statement.</string>
+    <string name="title_activity_foal_details">Foal Details</string>
+    <string name="continue_text">Continue</string>
+    <string name="back_text">Go Back</string>
+</resources>
