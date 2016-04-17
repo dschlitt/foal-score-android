@@ -222,17 +222,6 @@ public class SepsisScoreActivity extends Activity {
                 }
                 else {
                     // Internet connection is not present
-                    // Ask user to connect to Internet
-                   /* new AlertDialog.Builder(new ContextThemeWrapper(SepsisScoreActivity.this, R.style.Base_V7_Theme_AppCompat_Dialog))
-                            .setTitle("No Active Internet Connection.")
-                            .setMessage("Please connect to the Internet and try again.")
-                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    // continue with delete
-                                }
-                            })
-                            .setIcon(android.R.drawable.ic_dialog_info)
-                            .show();*/
                     offlineSetUp();
                 }
             }

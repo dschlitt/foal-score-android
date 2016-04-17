@@ -115,7 +115,7 @@ public class FoalScoreActivity extends Activity {
         text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog dialog = new AlertDialog.Builder(new ContextThemeWrapper( FoalScoreActivity.this, R.style.Base_V7_Theme_AppCompat_Dialog))
+                AlertDialog dialog = new AlertDialog.Builder(new ContextThemeWrapper(FoalScoreActivity.this, R.style.Base_V7_Theme_AppCompat_Dialog))
                         .setTitle("Sharing Information with The Ohio State University")
                         .setMessage("The FoalScore App offers an option to share data with The Ohio State University that will be used for future studies. If shared, data from this App will ONLY be used for research purposes and it will not reveal personal information from its users. User information is not required to use this App.")
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -126,7 +126,7 @@ public class FoalScoreActivity extends Activity {
                         .setIcon(android.R.drawable.ic_dialog_info)
                         .show();
                 TextView textView = (TextView) dialog.findViewById(android.R.id.message);
-                final int alertTitle = getResources().getIdentifier( "alertTitle", "id", "android" );
+                final int alertTitle = getResources().getIdentifier("alertTitle", "id", "android");
                 TextView alertTextView = (TextView) dialog.findViewById(alertTitle);
                 Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
                 textView.setTypeface(face);
@@ -144,29 +144,97 @@ public class FoalScoreActivity extends Activity {
                 // check for Internet status
                 if (isInternetPresent) {
                     calculate();
-                }
-                else {
+                } else {
                     // Internet connection is not present
-                    // Ask user to connect to Internet
-                    AlertDialog dialog = new AlertDialog.Builder(new ContextThemeWrapper(FoalScoreActivity.this, R.style.Base_V7_Theme_AppCompat_Dialog))
-                            .setTitle("No Active Internet Connection.")
-                            .setMessage("Please connect to the Internet and try again.")
-                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    // continue with delete
-                                }
-                            })
-                            .setIcon(android.R.drawable.ic_dialog_info)
-                            .show();
-                    TextView textView = (TextView) dialog.findViewById(android.R.id.message);
-                    final int alertTitle = getResources().getIdentifier( "alertTitle", "id", "android" );
-                    TextView alertTextView = (TextView) dialog.findViewById(alertTitle);
-                    Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
-                    textView.setTypeface(face);
-                    alertTextView.setTypeface(face);
+                    offlineSetUp();
                 }
             }
         });
+    }
+    public void offlineSetUp(){
+        // Validate if all the spinners have values
+        CustomListAdapter adapter = (CustomListAdapter)((HeaderViewListAdapter)listView.getAdapter()).getWrappedAdapter();
+        // Flag to check if a value has been selected for all the fields
+        boolean isValid = true;
+        // Flag to check if "Not Available" option is selected for at-least one
+        boolean isNotAvailablePresent = false;
+        final List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        adapter.resetError();
+        for(int i = 0; i < adapter.getCount(); i++) {
+            SepsisListItem it = adapter.getItem(i);
+            String paramKey = it.getParameterKey();
+            Spinner spinner = (Spinner) adapter.getView(i, null, null).findViewById(R.id.spinner);
+            TextView fieldTitle = (TextView) adapter.getView(i, null, null).findViewById(R.id.field_title);
+            try {
+                SpinnerObj spObj = (SpinnerObj) spinner.getSelectedItem();
+                String paramValue = spObj.getValue();
+                nameValuePairs.add(new BasicNameValuePair(paramKey, paramValue));
+                Log.i("FoalScoreActivity","key: " + paramKey + " Val: " + paramValue);
+                //temp.put(paramKey,paramValue);
+            } catch(Exception e) {
+                adapter.setError(i, "Please choose an option.");
+                //spinner.requestFocus();
+                //fieldTitle.requestFocus();
+                adapter.notifyDataSetChanged();
+                adapter.getView(i, null, null).findViewById(R.id.field_title).requestFocus();
+                Toast.makeText(this, "Choose an option for " + fieldTitle.getText(), Toast.LENGTH_SHORT).show();
+                isValid = false;
+                break;
+            }
+        }
+        ArrayList<String> result = offlineCalculation(nameValuePairs);
+        Log.i("FoalScoreActivity", "This is the offline result: " + result);
+        Intent intent = new Intent(FoalScoreActivity.this, ResultsActivity.class);
+        intent.putExtra("result", result.get(0));
+        intent.putExtra("score", result.get(1));
+        intent.putExtra("calculationId", (String) null);
+        intent.putExtra("scoreType", "survivalScore");
+        startActivity(intent);
+        return;
+    }
+
+    public ArrayList<String> offlineCalculation(List<NameValuePair> nameValuePairs) {
+        ArrayList<String> totalResult = new ArrayList<String>();
+        String prediction = "";
+        int totalScore = 0;
+
+        for (NameValuePair nvPair : nameValuePairs) {
+
+            String value = nvPair.getValue();
+            int valueInteger = Integer.parseInt(value);
+            totalScore += valueInteger;
+        }
+        switch (totalScore){
+            case 0:
+                prediction = "The foal has 3% chance of survival.";
+                break;
+            case 1:
+                prediction = "The foal has 8% chance of survival.";
+                break;
+            case 2:
+                prediction = "The foal has 18% chance of survival.";
+                break;
+            case 3:
+                prediction = "The foal has 38% chance of survival.";
+                break;
+            case 4:
+                prediction = "The foal has 62% chance of survival.";
+                break;
+            case 5:
+                prediction = "The foal has 82% chance of survival.";
+                break;
+            case 6:
+                prediction = "The foal has 92% chance of survival.";
+                break;
+            case 7:
+                prediction = "The foal has 97% chance of survival.";
+                break;
+        }
+
+
+        totalResult.add(0,prediction);
+        totalResult.add(1, Integer.toString(totalScore));
+        return totalResult;
     }
 
     public void calculate() {
@@ -314,22 +382,7 @@ public class FoalScoreActivity extends Activity {
                 intent.putExtra("scoreType", "survivalScore");
                 startActivity(intent);
             } else {
-                AlertDialog dialog = new AlertDialog.Builder( new ContextThemeWrapper(FoalScoreActivity.this, R.style.Base_V7_Theme_AppCompat_Dialog))
-                        .setTitle("Error")
-                        .setMessage(errorMsg)
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // continue with delete
-                            }
-                        })
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();
-                TextView textView = (TextView) dialog.findViewById(android.R.id.message);
-                final int alertTitle = getResources().getIdentifier( "alertTitle", "id", "android" );
-                TextView alertTextView = (TextView) dialog.findViewById(alertTitle);
-                Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
-                textView.setTypeface(face);
-                alertTextView.setTypeface(face);
+                offlineSetUp();
             }
         }
 
