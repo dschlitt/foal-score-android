@@ -92,21 +92,10 @@ public class ResultsActivity extends Activity {
             @Override
             public void onClick(View view) {
                 cd = new ConnectionDetector(getApplicationContext());
-                // get Internet status
-                isInternetPresent = cd.isConnectingToInternet();
-
-                // check for Internet status
-                if (isInternetPresent) {
-                    Intent i = new Intent(ResultsActivity.this, FoalsActivity.class);
-                    i.putExtra("requestCode", REQUEST_CODE);
-                    ResultsActivity.this.startActivityForResult(i, REQUEST_CODE);
-                }
-                else {
-                    // Internet connection is not present
-                    // Ask user to connect to Internet
+                if (calculationId == null) {
                     AlertDialog dialog = new AlertDialog.Builder(new ContextThemeWrapper(ResultsActivity.this, R.style.Base_V7_Theme_AppCompat_Dialog))
-                            .setTitle("No Active Internet Connection.")
-                            .setMessage("Please connect to the Internet and try again.")
+                            .setTitle("Error")
+                            .setMessage("Not connected to the server. Can't save the score. Please try again later.")
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     // continue with delete
@@ -115,11 +104,40 @@ public class ResultsActivity extends Activity {
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
                     TextView textView = (TextView) dialog.findViewById(android.R.id.message);
-                    final int alertTitle = getResources().getIdentifier( "alertTitle", "id", "android" );
+                    final int alertTitle = getResources().getIdentifier("alertTitle", "id", "android");
                     TextView alertTextView = (TextView) dialog.findViewById(alertTitle);
                     Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
                     textView.setTypeface(face);
                     alertTextView.setTypeface(face);
+                } else {
+                    // get Internet status
+                    isInternetPresent = cd.isConnectingToInternet();
+
+                    // check for Internet status
+                    if (isInternetPresent) {
+                        Intent i = new Intent(ResultsActivity.this, FoalsActivity.class);
+                        i.putExtra("requestCode", REQUEST_CODE);
+                        ResultsActivity.this.startActivityForResult(i, REQUEST_CODE);
+                    } else {
+                        // Internet connection is not present
+                        // Ask user to connect to Internet
+                        AlertDialog dialog = new AlertDialog.Builder(new ContextThemeWrapper(ResultsActivity.this, R.style.Base_V7_Theme_AppCompat_Dialog))
+                                .setTitle("No Active Internet Connection.")
+                                .setMessage("Please connect to the Internet and try again.")
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // continue with delete
+                                    }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                        TextView textView = (TextView) dialog.findViewById(android.R.id.message);
+                        final int alertTitle = getResources().getIdentifier("alertTitle", "id", "android");
+                        TextView alertTextView = (TextView) dialog.findViewById(alertTitle);
+                        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
+                        textView.setTypeface(face);
+                        alertTextView.setTypeface(face);
+                    }
                 }
             }
         });

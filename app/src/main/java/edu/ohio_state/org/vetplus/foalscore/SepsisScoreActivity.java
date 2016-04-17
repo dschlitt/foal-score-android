@@ -206,6 +206,8 @@ public class SepsisScoreActivity extends Activity {
             }
         });
 
+
+
         calculateSepsis = (Button) v.findViewById(R.id.calculateSepsis);
         calculateSepsis.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -221,7 +223,7 @@ public class SepsisScoreActivity extends Activity {
                 else {
                     // Internet connection is not present
                     // Ask user to connect to Internet
-                    new AlertDialog.Builder(new ContextThemeWrapper(SepsisScoreActivity.this, R.style.Base_V7_Theme_AppCompat_Dialog))
+                   /* new AlertDialog.Builder(new ContextThemeWrapper(SepsisScoreActivity.this, R.style.Base_V7_Theme_AppCompat_Dialog))
                             .setTitle("No Active Internet Connection.")
                             .setMessage("Please connect to the Internet and try again.")
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -230,10 +232,104 @@ public class SepsisScoreActivity extends Activity {
                                 }
                             })
                             .setIcon(android.R.drawable.ic_dialog_info)
-                            .show();
+                            .show();*/
+                    offlineSetUp();
                 }
             }
         });
+    }
+
+    public void offlineSetUp(){
+      // Validate if all the spinners have values
+        CustomListAdapter adapter = (CustomListAdapter)((HeaderViewListAdapter)sepsisListView.getAdapter()).getWrappedAdapter();
+        // Flag to check if a value has been selected for all the fields
+        boolean isValid = true;
+        // Flag to check if "Not Available" option is selected for at-least one
+        boolean isNotAvailablePresent = false;
+        final List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        adapter.resetError();
+        for(int i = 0; i < adapter.getCount(); i++) {
+            SepsisListItem it = adapter.getItem(i);
+            String paramKey = it.getParameterKey();
+            Spinner spinner = (Spinner) adapter.getView(i, null, null).findViewById(R.id.spinner);
+            TextView fieldTitle = (TextView) adapter.getView(i, null, null).findViewById(R.id.field_title);
+            try {
+                SpinnerObj spObj = (SpinnerObj) spinner.getSelectedItem();
+                String paramValue = spObj.getValue();
+                nameValuePairs.add(new BasicNameValuePair(paramKey, paramValue));
+                if(spObj.getLabel().equalsIgnoreCase("Not Available")) {
+                    isNotAvailablePresent = true;
+                }
+                Log.i("SepsisScoreActivity", "key: " + paramKey + " Val: " + paramValue);
+            } catch(Exception e) {
+                Log.i("SepsisScoreActivity", "Exception: " + e.getMessage());
+                Log.i("SepsisScoreActivity", "Error at: " + i + " - " + fieldTitle.getText());
+                adapter.setError(i, "Please choose an option.");
+                adapter.notifyDataSetChanged();
+                adapter.getView(i, null, null).findViewById(R.id.field_title).requestFocus();
+                Toast.makeText(this, "Choose an option for " + fieldTitle.getText(), Toast.LENGTH_SHORT).show();
+                isValid = false;
+                break;
+            }
+
+
+        }
+        if(isValid) {
+            // Show an alert if at-least one field has "Not Available" option
+            if(isNotAvailablePresent) {
+                AlertDialog dialog = new AlertDialog.Builder(new ContextThemeWrapper(SepsisScoreActivity.this, R.style.Base_V7_Theme_AppCompat_Dialog))
+                        .setTitle("Warning")
+                        .setMessage("You have selected the option \"Not Available\" for one or more questions. This may affect the accuracy of the results.")
+                        .setPositiveButton(R.string.continue_text, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                ArrayList<String> result =  offlineCalculation(nameValuePairs);
+                                Log.i("SepsisScoreActivity","This is the offline result: " + result);
+                            }
+                        })
+                        .setNegativeButton(R.string.back_text, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Do nothing
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+            } else {
+
+                ArrayList<String> result = offlineCalculation(nameValuePairs);
+                Log.i("SepsisScoreActivity","This is the offline result: " + result);
+                Intent intent = new Intent(SepsisScoreActivity.this, ResultsActivity.class);
+                intent.putExtra("result",result.get(0));
+                intent.putExtra("score", result.get(1));
+                intent.putExtra("calculationId", (String)null);
+                intent.putExtra("scoreType", "sepsisScore");
+                startActivity(intent);
+            }
+        }
+        return;
+
+    }
+
+    public ArrayList<String> offlineCalculation(List<NameValuePair> nameValuePairs) {
+        ArrayList<String> totalResult = new ArrayList<String>();
+        String prediction = "";
+        int totalScore = 0;
+
+        for(NameValuePair nvPair :nameValuePairs) {
+
+                String value = nvPair.getValue();
+                int valueInteger = Integer.parseInt(value);
+                totalScore += valueInteger;
+        }
+        if(totalScore < 12) {
+            prediction = "The foal is predicted to not have Sepsis with 88% accuracy.";
+        }else {
+            prediction = "The foal is predicted to have Sepsis with 93% accuracy.";
+        }
+
+        totalResult.add(0,prediction);
+        totalResult.add(1,Integer.toString(totalScore));
+        return totalResult;
     }
 
     public void validate() {
@@ -410,22 +506,10 @@ public class SepsisScoreActivity extends Activity {
                 intent.putExtra("scoreType", "sepsisScore");
                 startActivity(intent);
             } else {
-                AlertDialog dialog = new AlertDialog.Builder( new ContextThemeWrapper(SepsisScoreActivity.this, R.style.Base_V7_Theme_AppCompat_Dialog))
-                        .setTitle("Error")
-                        .setMessage(errorMsg)
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // continue with delete
-                            }
-                        })
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();
-                TextView textView = (TextView) dialog.findViewById(android.R.id.message);
-                final int alertTitle = getResources().getIdentifier( "alertTitle", "id", "android" );
-                TextView alertTextView = (TextView) dialog.findViewById(alertTitle);
-                Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
-                textView.setTypeface(face);
-                alertTextView.setTypeface(face);
+                finish();
+                //LoginActivity.this.startActivity(new Intent(LoginActivity.this, HomePageActivity.class));
+                offlineSetUp();
+
             }
         }
 
