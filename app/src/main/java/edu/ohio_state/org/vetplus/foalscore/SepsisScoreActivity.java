@@ -273,6 +273,13 @@ public class SepsisScoreActivity extends Activity {
                             public void onClick(DialogInterface dialog, int which) {
                                 ArrayList<String> result =  offlineCalculation(nameValuePairs);
                                 Log.i("SepsisScoreActivity","This is the offline result: " + result);
+                                Intent intent = new Intent(SepsisScoreActivity.this, ResultsActivity.class);
+                                intent.putExtra("result",result.get(0));
+                                intent.putExtra("score", result.get(1));
+                                intent.putExtra("calculationId", (String)null);
+                                intent.putExtra("scoreType", "sepsisScore");
+                                startActivity(intent);
+
                             }
                         })
                         .setNegativeButton(R.string.back_text, new DialogInterface.OnClickListener() {
