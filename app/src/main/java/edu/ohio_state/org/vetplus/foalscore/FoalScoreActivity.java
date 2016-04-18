@@ -182,15 +182,17 @@ public class FoalScoreActivity extends Activity {
                 break;
             }
         }
-        ArrayList<String> result = offlineCalculation(nameValuePairs);
-        Log.i("FoalScoreActivity", "This is the offline result: " + result);
-        Intent intent = new Intent(FoalScoreActivity.this, ResultsActivity.class);
-        intent.putExtra("result", result.get(0));
-        intent.putExtra("score", result.get(1));
-        intent.putExtra("calculationId", (String) null);
-        intent.putExtra("scoreType", "survivalScore");
-        startActivity(intent);
-        return;
+
+        if (isValid) {
+            ArrayList<String> result = offlineCalculation(nameValuePairs);
+            Log.i("FoalScoreActivity", "This is the offline result: " + result);
+            Intent intent = new Intent(FoalScoreActivity.this, ResultsActivity.class);
+            intent.putExtra("result", result.get(0));
+            intent.putExtra("score", result.get(1));
+            intent.putExtra("calculationId", (String) null);
+            intent.putExtra("scoreType", "survivalScore");
+            startActivity(intent);
+        }
     }
 
     public ArrayList<String> offlineCalculation(List<NameValuePair> nameValuePairs) {
